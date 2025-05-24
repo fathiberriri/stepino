@@ -6,6 +6,8 @@ from stepino.stepino_stack import StepinoStack
 
 
 app = cdk.App()
-StepinoStack(app, "StepinoStack")
+StepinoStack(app, "StepinoStack",
+              project="stepino",
+              environment="lab")
 
 app.synth()
