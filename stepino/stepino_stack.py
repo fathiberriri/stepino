@@ -18,7 +18,7 @@ class StepinoStack(Stack):
         # Helper for tagging
         def tag_resource(resource, resource_type):
             tag_key = f"{project}-{environment}-{resource_type}"
-            Tags.of(resource).add(tag_key, "true")
+            Tags.of(resource).add("Name", tag_key)
 
         # 1. Create VPC with public and private subnets
         vpc = ec2.Vpc(self, "Vpc",
@@ -134,8 +134,8 @@ class StepinoStack(Stack):
                                            instance_type=ec2.InstanceType("t3.nano"),
                                         #    machine_image=ec2.MachineImage.latest_amazon_linux(),
                                            machine_image=ec2.MachineImage.latest_amazon_linux2(), 
-                                           min_capacity=1,
-                                           max_capacity=2,
+                                           min_capacity=2,
+                                           max_capacity=3,
                                            associate_public_ip_address=False,
                                            vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PRIVATE_WITH_EGRESS),
                                            security_group=ec2_sg,
